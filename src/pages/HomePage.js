@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import { fetchFilms } from '../services/api';
+
 import GetProperties from 'helpers/GetProperties';
-import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from '../services/api';
 
 const HomePage = () => {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [films, setFilms] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const { url } = useRouteMatch();
-  const location = useLocation();
+  // const [isLoading, setIsLoading] = useState(false);
+  // const { url } = useRouteMatch();
+  // const location = useLocation();
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -52,14 +52,14 @@ const HomePage = () => {
             </li>
           ))}
       </ul>
-      <button
+      {/* <button
         type="button"
         onClick={() => {
           setPage(prevPage => prevPage + 1);
         }}
       >
         Add
-      </button>
+      </button> */}
     </>
   );
 };
