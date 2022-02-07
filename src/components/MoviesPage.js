@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchMoviesFromQuery, fetchTrendingMovies } from 'services/api';
+import { fetchMoviesFromQuery } from 'services/api';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 const MoviesPage = () => {
