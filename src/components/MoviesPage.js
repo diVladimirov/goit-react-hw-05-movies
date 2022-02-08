@@ -40,15 +40,30 @@ const MoviesPage = () => {
       <ul>
         {moviesList &&
           moviesList.map(
-            ({ original_title, id, overview, backdrop_path, title }) => (
+            ({
+              original_title,
+              id,
+              overview,
+              backdrop_path,
+              title,
+              poster_path,
+            }) => (
               <li key={id}>
-                <h2>{original_title}</h2>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
-                  alt={title}
-                />
+                <Link to={`${url}/${id}`}>
+                  <h2>{original_title}</h2>
+                  {backdrop_path !== null ? (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                      alt={title}
+                    />
+                  ) : (
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                      alt={title}
+                    />
+                  )}
+                </Link>
                 <p>{overview}</p>
-                <Link to={`${url}/${id}`}>to movie</Link>
               </li>
             )
           )}

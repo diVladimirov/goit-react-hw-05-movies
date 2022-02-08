@@ -39,20 +39,40 @@ const MovieDetailsPage = () => {
     genres,
     credits,
     reviews,
+    poster_path,
   } = film;
+  console.log(backdrop_path);
   console.log(film);
   return (
     <>
       <section>
         <h2>{original_title}</h2>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
-          alt={title}
-        />
+        {backdrop_path !== null ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+            alt={title}
+          />
+        ) : (
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            alt={title}
+          />
+        )}
 
-        <p>{release_date}</p>
-        <p>User Score: {vote_average}</p>
+        <p>Release date: {release_date}</p>
+        {
+          <p>
+            User score:
+            {vote_average !== 0 ? (
+              <span> {vote_average}</span>
+            ) : (
+              <span>not scored yet</span>
+            )}
+          </p>
+        }
+
         <ul>
+          <p>Genres:</p>
           {genres && genres.map(({ id, name }) => <li key={id}>{name}</li>)}
         </ul>
         <p>{overview}</p>
@@ -60,7 +80,7 @@ const MovieDetailsPage = () => {
         <NavLink to={`${url}/reviews `}>Reviews</NavLink>
 
         <button type="button" onClick={onGoBack}>
-          Go back
+          Go Home
         </button>
       </section>
       <Route path={`${url}/cast`}>

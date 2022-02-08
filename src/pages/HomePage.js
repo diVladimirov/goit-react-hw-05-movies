@@ -33,13 +33,8 @@ const HomePage = () => {
     <>
       <ul>
         {films &&
-          films.map(({ id, title, backdrop_path }) => (
+          films.map(({ id, title, backdrop_path, poster_path }) => (
             <li key={id}>
-              <h2>{title}</h2>
-              <img
-                src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
-                alt={title}
-              />
               {/* <Link
                 to={{
                   pathname: `${url}/${id}`,
@@ -48,7 +43,20 @@ const HomePage = () => {
               >
                 About movie
               </Link> */}
-              <Link to={`/movies/${id}`}>About movie</Link>
+              <Link to={`/movies/${id}`}>
+                <h2>{title}</h2>
+                {backdrop_path !== null ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                    alt={title}
+                  />
+                ) : (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+                    alt={title}
+                  />
+                )}
+              </Link>
             </li>
           ))}
       </ul>
