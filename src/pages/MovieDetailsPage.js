@@ -41,13 +41,12 @@ const MovieDetailsPage = () => {
     reviews,
     poster_path,
   } = film;
-  console.log(backdrop_path);
-  console.log(film);
+
   return (
     <>
       <section>
         <h2>{original_title}</h2>
-        {backdrop_path !== null ? (
+        {backdrop_path ? (
           <img
             src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
             alt={title}
@@ -80,7 +79,7 @@ const MovieDetailsPage = () => {
         <NavLink to={`${url}/reviews `}>Reviews</NavLink>
 
         <button type="button" onClick={onGoBack}>
-          Go Home
+          Go back
         </button>
       </section>
       <Route path={`${url}/cast`}>
@@ -94,6 +93,3 @@ const MovieDetailsPage = () => {
 };
 
 export default MovieDetailsPage;
-
-// const movieID = useParams();
-// const id = Object.values(movieID);

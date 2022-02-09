@@ -19,9 +19,6 @@ const App = () => {
         <Route path="/movies/:moviesId">
           <MovieDetailsPage />
         </Route>
-        <Route path="/movies/:movieId/cast"></Route>
-        <Route path="/movies/:movieId/reviews"></Route>
-        {/* <Redirect from="/" to=":moviesId" /> */}
       </Switch>
     </>
   );

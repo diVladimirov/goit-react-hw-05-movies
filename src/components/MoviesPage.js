@@ -22,7 +22,6 @@ const MoviesPage = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log(event.target.movieToFind.value);
     setMovieToFind(event.target.movieToFind.value);
     event.target.movieToFind.value = '';
   };
@@ -51,7 +50,7 @@ const MoviesPage = () => {
               <li key={id}>
                 <Link to={`${url}/${id}`}>
                   <h2>{original_title}</h2>
-                  {backdrop_path !== null ? (
+                  {backdrop_path ? (
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
                       alt={title}
