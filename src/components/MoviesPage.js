@@ -1,28 +1,38 @@
 import { useState, useEffect } from 'react';
 import { fetchMoviesFromQuery } from 'services/api';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 
 const MoviesPage = () => {
-  const [movieToFind, setMovieToFind] = useState('');
+  // const [movieToFind, setMovieToFind] = useState('');
   const [moviesList, setMovieList] = useState([]);
   const { url } = useRouteMatch();
+  const location = useLocation();
+  const history = useHistory();
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
-    if (movieToFind === '') {
+    const correctInput = search.slice(7, search.length);
+    if (correctInput === '') {
       return;
     }
-    fetchMoviesFromQuery(movieToFind)
+    fetchMoviesFromQuery(correctInput)
       .then(({ data }) => {
         setMovieList(data.results);
       })
       .catch(error => {
         console.log(error);
       });
-  }, [movieToFind]);
+  }, [search]);
 
   const handleSubmit = event => {
     event.preventDefault();
-    setMovieToFind(event.target.movieToFind.value);
+    // setMovieToFind(event.target.movieToFind.value);
+
+    history.push({
+      pathname: pathname,
+      search: `query=${event.target.movieToFind.value}`,
+    });
+
     event.target.movieToFind.value = '';
   };
 
@@ -48,7 +58,12 @@ const MoviesPage = () => {
               poster_path,
             }) => (
               <li key={id}>
-                <Link to={`${url}/${id}`}>
+                <Link
+                  to={{
+                    pathname: `${url}/${id}`,
+                    state: { from: location },
+                  }}
+                >
                   <h2>{original_title}</h2>
                   {backdrop_path ? (
                     <img
