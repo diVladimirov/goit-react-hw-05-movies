@@ -11,8 +11,8 @@ const Cast = ({ credits }) => {
                 src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
                 alt={name}
               />
-              <p>{name}</p>
-              <p>{character}</p>
+              <p>Name: {name}</p>
+              <p>Character: {character}</p>
             </li>
           ))}
       </ul>
