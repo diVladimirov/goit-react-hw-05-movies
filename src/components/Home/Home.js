@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ListStyled, TitleStyled } from './Home.styled';
+import PropTypes from 'prop-types';
 
 const Home = ({ films }) => {
   const location = useLocation();
@@ -39,3 +40,7 @@ const Home = ({ films }) => {
 };
 
 export default Home;
+
+Home.propTypes = {
+  films: PropTypes.array.isRequired,
+};

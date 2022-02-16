@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, useLocation } from 'react-router-dom';
 import {
   SectionStyled,
   LinksWrapperStyled,
@@ -9,6 +9,8 @@ import { ButtonStyled } from 'components/Movies/Movies.styled';
 
 const MovieDetails = ({ film, onGoBack }) => {
   const { url } = useRouteMatch();
+  const location = useLocation();
+
   const {
     original_title,
     release_date,
@@ -55,11 +57,27 @@ const MovieDetails = ({ film, onGoBack }) => {
       </ul>
       <p>{overview}</p>
       <LinksWrapperStyled>
-        <NavLinkStyled to={`${url}/cast`}>Cast</NavLinkStyled>
-        <NavLinkStyled to={`${url}/reviews `}>Reviews</NavLinkStyled>
+        <NavLinkStyled
+          to={{
+            pathname: `${url}/cast`,
+            state: { from: location?.state?.from },
+          }}
+        >
+          Cast
+        </NavLinkStyled>
+        <NavLinkStyled
+          to={{
+            pathname: `${url}/reviews `,
+            state: { from: location?.state?.from },
+          }}
+        >
+          Reviews
+        </NavLinkStyled>
       </LinksWrapperStyled>
     </SectionStyled>
   );
 };
 
 export default MovieDetails;
+// to={`${url}/cast`}
+// to={`${url}/reviews `}
